@@ -12,6 +12,7 @@ protected:
 public:
 	//constractor
 	Course(int CourseNumber, char* CourseName, int NumOfHW, int HwWeight);
+	Course(); //sivan
 	//destructor
 	~Course();
 
