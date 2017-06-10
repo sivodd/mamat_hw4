@@ -16,17 +16,14 @@ using std::endl;
 class Student : public Person {
 
 protected:
-    int NumOfEE_Courses;
-//    Course* EE_Courses = (Course*)malloc(MAX_COURSE_NUM* sizeof(int)); //maybe this needs to be MAX_COURSE_NUM
-    int NumOfCS_Courses;
-//    Course* CS_Courses = (Course*)malloc(MAX_COURSE_NUM* sizeof(int)); //maybe this needs to be MAX_COURSE_NUM
-  CS_Course* CS_Courses[MAX_COURSE_NUM]= {NULL};// maybe this should be in .c constructor
-  EE_Course* EE_Courses[MAX_COURSE_NUM]= {NULL};
+	CS_Course* CS_Courses[MAX_COURSE_NUM];
+	EE_Course* EE_Courses[MAX_COURSE_NUM];
+	int NumOfEE_Courses;
+	int NumOfCS_Courses;
 
 public:
     //constructor
-    Student(int NumOfEECourses, int NumOfCSCourses);
-//  Student();
+    Student(char *PersonName, int personID);
 
     //destructor
     ~Student(); //there is a warning here i don't understand "destructor hides a non virtual function from class person"?

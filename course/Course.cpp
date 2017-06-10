@@ -1,56 +1,77 @@
 #include "Course.h"
 #include <string>
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 //constractor
-Course :: Course(int CourseNumber, char* CourseName, int NumOfHW, int HwWeight)
+Course :: Course(int courseNumber, char* courseName, int numOfHW, float hwWeight)
 {
-	CourseNumber = CourseNumber;
-	CourseName = CourseName;
-	NumOfHW = NumOfHW;
-	HwWeight = HwWeight;
+	CourseNumber = courseNumber;
+	CourseName = new char[strlen(courseName) + 1];
+	strcpy(CourseName, courseName);
+	NumOfHW = numOfHW;
+	HwWeight = hwWeight;
+	Hwgardes = new int[NumOfHW];//SIZEOF
+}
+Course::Course()
+{
+	CourseNumber = NULL;
+	CourseName = NULL;
+	NumOfHW = NULL;
+	HwWeight = NULL;
 }
 
 //destructor
 Course :: ~Course()
 {
-	free(Hwgardes);
+	delete[]CourseName;
+	delete[]Hwgardes;
 }
 
 //operations
-int Course::getNum(){
+int Course::getNum() const {
 	return CourseNumber;
 }
 
-char* Course::getName() {
-	return strdup(CourseName);
+char* Course::getName() const {
+	char* dup_name = new char[strlen(CourseName) + 1];
+	if (dup_name == NULL)
+		return NULL;
+	strcpy(dup_name, CourseName);
+	return dup_name;
 }
 
-int Course::getExamGrade() {
+int Course::getExamGrade() const {
 	return ExamGrade;
 }
 
-int Course::gethwGrade(int HwNum) {
+int Course::gethwGrade(int HwNum) const  {
 	return *(Hwgardes+HwNum);
 }
 
-int Course::gerHwNum() {
+int Course::getHwNum() const {
 	return NumOfHW;
 }
 
-float Course::getHwWeight() {
+float Course::getHwWeight() const {
 	return HwWeight;
 }
 
-float Course::getHwAvarge() {
+float Course::getHwAvarge() const {
 	int sum = 0;
-	for (int i = 0; i < NumOfHW; i++)
+	int i;
+	if (NumOfHW == 0)
+		return 0;
+	for (i = 0; i < NumOfHW; i++)
 	{
-		sum+= *(Hwgardes+i);
+		sum+= Hwgardes[i];
 	}
-	return (float)(sum / NumOfHW);
+	return (float(sum)/float(NumOfHW));
 }
 
-int Course::getCourseGrade() {
-	int grade = round((1 - HwWeight)*ExamGrade + HwWeight*getHwAvarge());
+int Course::getCourseGrade() const {
+	int HwAv = getHwAvarge();
+	int grade = (int)((1 - HwWeight)*ExamGrade + HwWeight*getHwAvarge() + 0.5);
 	return grade;
 }
 
@@ -62,5 +83,6 @@ bool Course::setExamGrade(int Examgrade) {
 }
 
 bool Course::setHwGrade(int HwNum, int HwGrade) {
-	*(Hwgardes+HwNum) = HwGrade;
+	Hwgardes [HwNum] = HwGrade;
+	return true; //omer
 }

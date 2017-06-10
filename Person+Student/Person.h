@@ -14,8 +14,7 @@ protected:
 
 public:
     //constructor
-    Person(char* PersonName, int PersonID);
-    Person();
+    Person(char* personName, int personID);
 
     //destructor
     ~Person();
