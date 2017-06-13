@@ -52,8 +52,6 @@ bool CS_Course::isTakef() const
 char* CS_Course::getBook() const
 {
 	char* dupName = new char[strlen(Book) + 1];
-//	if (dupName == NULL)
-//		return NULL;
 	strcpy(dupName, Book);
 	return dupName;
 }
@@ -81,9 +79,7 @@ bool CS_Course::setBook(char* name)
 	if (name == NULL)
 		return false;
 	char* temp = new char[strlen(name) + 1];
-//	if (temp == NULL)
-//		return;
-	delete Book;//if there is a book name already
+	delete Book;///if there is a book name already
 	Book = temp;
 	strcpy(Book, name);
 	return true;

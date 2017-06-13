@@ -19,6 +19,7 @@ Course :: Course(int courseNumber, char* courseName, int numOfHW, float hwWeight
 	HwWeight = hwWeight;
 	ExamGrade = 0;
 	Hwgardes = new int[NumOfHW];
+	//reset the HW grade to 0
     for(int i=0; i<numOfHW;i++)
     {
         Hwgardes[i]=0;
@@ -57,8 +58,6 @@ int Course::getNum() const {
 //*************************************************************************************
 char* Course::getName() const {
 	char* dup_name = new char[strlen(CourseName) + 1];
-//	if (dup_name == NULL)
-//		return NULL;
 	strcpy(dup_name, CourseName);
 	return dup_name;
 }

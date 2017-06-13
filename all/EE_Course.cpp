@@ -57,10 +57,13 @@ bool EE_Course::setFactor(int factor)
 //*************************************************************************************
 int EE_Course::getCourseGrade() const {
 	int grade = 0;
+	//if there is no homeworks even if HwWeight is not 0 the exam weight is 100% (+factor)
 	if (NumOfHW == 0)
 		grade = ExamGrade + Factor;
+	//if there is homeworks
 	else
 		grade = (int)((1 - HwWeight)*ExamGrade + HwWeight*getHwAvarge() + Factor + 0.5);
+	//correct the score to a proper value
 	if (grade < 0)
 		return 0;
 	if (grade > 100)
