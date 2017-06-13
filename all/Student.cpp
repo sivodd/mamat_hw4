@@ -124,7 +124,7 @@ void Student::print() const {
 	for (int i = 0; i < MAX_COURSE_NUM; i++) {
 		if (EE_Courses[i] != NULL) {
 			char* EE_course_name = EE_Courses[i]->getName();
-			cout << EE_Courses[i]->getNum() << " " << EE_course_name << " " <<
+			cout << EE_Courses[i]->getNum() << " " << EE_course_name << ": " <<
 				EE_Courses[i]->getCourseGrade() << endl;
 			delete[] EE_course_name;
 		}
@@ -134,9 +134,10 @@ void Student::print() const {
 	for (int i = 0; i < MAX_COURSE_NUM; i++) {
 		if (CS_Courses[i] != NULL) {
 			char* CS_course_name = CS_Courses[i]->getName();
-			cout << CS_Courses[i]->getNum() << " " << CS_course_name << " " <<
-				CS_Courses[i]->getCourseGrade() << endl << endl;
+			cout << CS_Courses[i]->getNum() << " " << CS_course_name << ": " <<
+				CS_Courses[i]->getCourseGrade() << endl;
 			delete[] CS_course_name;
 		}
 	}
+	cout << endl;
 }
