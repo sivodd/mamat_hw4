@@ -7,7 +7,7 @@
 
 class StArray {
 protected:
-	Student* students [MAX_STUDENT_NUM];// = { NULL };
+	Student* students [MAX_STUDENT_NUM];
 	int NumOfStudents;
 public:
 	//constractor

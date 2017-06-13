@@ -4,9 +4,7 @@
 #include <stdlib.h>
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
-
-
-class Course {
+class Course{
 protected:
 	int CourseNumber;
 	char* CourseName;

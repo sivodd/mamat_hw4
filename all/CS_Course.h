@@ -1,13 +1,9 @@
-//
-// Created by sivan on 07/06/2017.
-//
-
 #ifndef HW4_CS_COURSE_H
 #define HW4_CS_COURSE_H
 #include <stdlib.h>
 #include "Course.h"
 
-class CS_Course : public Course {
+class CS_Course:public Course {
 protected:
 	bool IsTakef;
 	char* Book;
@@ -21,7 +17,7 @@ public:
 	bool isTakef() const;
 	char* getBook() const;
 	bool setTakef(bool binary);
-	void setBook(char* name);
+	bool setBook(char* name);
 	int getCourseGrade() const;
 };
 
