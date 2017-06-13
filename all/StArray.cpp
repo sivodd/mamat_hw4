@@ -40,10 +40,12 @@ StArray :: ~StArray(){
 //*************************************************************************************
 bool StArray :: addStudent(int student_id, char* student_name)
 {
+	//if there is no place to new student
 	if (NumOfStudents == MAX_STUDENT_NUM)
 		return false;
 	Student* new_student = new Student(student_name, student_id);
 	int i = 0;
+	//finding the fisrt empty place in the array
 	while (students[i] != NULL)
 	{
 		i++;
@@ -67,15 +69,18 @@ bool StArray :: addEE_Course(int student_id, int course_num, char* course_name, 
 {
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
+		//if - true if students[i] is the given student
 		if ((students[i] != NULL)&&(student_id == students[i]->getID()))
 		{
 			EE_Course* ee_course = new EE_Course(course_num, course_name, NumOfHw, hwWeight);
 			if (students[i]->addEE_Course(ee_course))
 				return true;
+			//delet if the function addEE_Course failed
 			delete ee_course;
 			return false;
 		}
 	}
+	//if the student doesnt exsit in the system
 	return false;
 }
 
@@ -96,15 +101,18 @@ bool StArray :: addCS_Course(int student_id, int course_num, char* course_name, 
 {
 		for (int i = 0; i < MAX_STUDENT_NUM; i++)
 		{
+			//if - true if students[i] is the given student
 			if ((students[i] != NULL)&&(student_id == students[i]->getID()))
 			{
 				CS_Course* cs_course = new CS_Course(book, takef,course_num, course_name, NumOfHw, hwWeight);
 				if (students[i]->addCS_Course(cs_course))
 					return true;
+				//delet if the function addEE_Course failed
 				delete cs_course;
 				return false;
 			}
 		}
+		//if the student doesnt exsit in the system
 		return false;
 }
 
@@ -123,23 +131,28 @@ bool StArray ::setHwGrade(int student_id, int course_num, int Hw_num, int hw_gra
 {
 	for (int i = 0; i < MAX_STUDENT_NUM; i++)
 	{
+		//if - true if students[i] is the given student
 		if ((students[i]!=NULL)&&(student_id == students[i]->getID()))
 		{
 			EE_Course* ee_course= students[i]->getEE_Course(course_num);
+			//if: true if the given course is an ee_course and the given student have this course
 			if ((ee_course != NULL)&& (Hw_num <= ee_course->getHwNum()))
 			{
 				bool res = ee_course->setHwGrade(Hw_num, hw_grade);
 				return res;
 			}
 			CS_Course* cs_course= students[i]->getCS_Course(course_num);
+			//if: true if the given course is an cs_course and the given student have this course
 			if ((cs_course != NULL) && (Hw_num <= cs_course->getHwNum()))
 			{
 				bool res = cs_course->setHwGrade(Hw_num, hw_grade);
 				return res;
 			}
+			//false - if the student doesnt have the course
 			return false;
 		}
 	}
+	//false - if the given student doesnt exsit in the system
 	return false;
 }
 
@@ -159,12 +172,14 @@ bool StArray :: setExamGrade(int student_id, int course_num, int examGrade)
 		if ((students[i] != NULL) && (student_id == students[i]->getID()))
 		{
 			EE_Course* ee_course = students[i]->getEE_Course(course_num);
+			//if - true if the given course is an ee_course and the student have it
 			if (ee_course != NULL)
 			{
 				bool res = ee_course->setExamGrade(examGrade);
 				return res;
 			}
 			CS_Course* cs_course = students[i]->getCS_Course(course_num);
+			//if - true if the given course is an cs_course and the student have it
 			if (cs_course != NULL)
 			{
 				bool res = cs_course->setExamGrade(examGrade);
@@ -191,12 +206,12 @@ bool StArray :: setFactor(int course_num, int Factor)
 	{
 		EE_Course* ee_course = students[i]->getEE_Course(course_num);
 		i++;
-		if (ee_course == NULL)
+		if (ee_course == NULL) //true if students[i] doesnt have the given course
 			continue;
 		ee_course->setFactor(Factor);
 		change = true;
 	}
-	return change;
+	return change; //false if all the students dont have the given course
 }
 
 //*************************************************************************************
