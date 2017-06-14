@@ -13,15 +13,39 @@ protected:
     char* PersonName;
 
 public:
-    //constructor
+// *************************************************************************************
+//* Function name : Person
+//* Description   : constructor for person class
+//* Parameters    : personName - a string of a persons name
+//                  personID - a num representing the persons ID
+//* Return value  : None.
+//*************************************************************************************
     Person(char* personName, int personID);
 
-    //destructor
+// *************************************************************************************
+//* Function name : ~Person
+//* Description   : destructor for person class, frees all dynamic memory for person.
+//* Parameters    : None.
+//* Return value  : None.
+//*************************************************************************************
     ~Person();
 
     //operations
+//*************************************************************************************
+//* Function name : getID
+//* Description   : Fetches a persons ID for a user outside the class
+//* Parameters    : None.
+//* Return value  : ID number.
+//*************************************************************************************
     int getID()const;
-    char* getName()const; //need to read more about the use of const.
+
+//*************************************************************************************
+//* Function name : getName
+//* Description   : Gets a persons name for a user outside the class
+//* Parameters    : None.
+//* Return value  : A persons name.
+//*************************************************************************************
+    char* getName()const;
 
 };
 
